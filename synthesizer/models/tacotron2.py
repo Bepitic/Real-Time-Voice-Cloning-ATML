@@ -213,6 +213,7 @@ class Encoder(nn.Module):
         for conv in self.convolutions:
             x = F.dropout(F.relu(conv(x)), 0.5, self.training)
 
+        print(x.shape())
         # TODO: To concatenate the embbeding thing
         if(None != embedding):
             self.add_embedding(x,embedding)
@@ -682,7 +683,6 @@ class Tacotron2(nn.Module):
         return self.parse_output(
             [mel_outputs, mel_outputs_postnet, gate_outputs, alignments],
             output_lengths)
-
 
     def infer(self, inputs, input_lengths):
 
